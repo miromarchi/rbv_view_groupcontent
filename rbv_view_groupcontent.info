@@ -1,0 +1,17 @@
+name = Group contents view
+description = Group content view panes for relations and projects
+core = 7.x
+package = RBV views
+version = 7.x-1.4
+project = rbv_view_groupcontent
+dependencies[] = rbv_com_fields
+dependencies[] = rbv_org
+dependencies[] = rbv_project
+dependencies[] = rbv_rel
+dependencies[] = views
+dependencies[] = views_content
+features[ctools][] = views:views_default:3.0
+features[features_api][] = api:2
+features[views_view][] = rbv_view_groupcontent
+features_exclude[dependencies][ctools] = ctools
+project path = sites/all/modules/features
