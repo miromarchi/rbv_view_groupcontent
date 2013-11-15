@@ -22,6 +22,7 @@ function rbv_view_groupcontent_views_default_views() {
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->display->display_options['title'] = 'Collaborazioni';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -31,6 +32,7 @@ function rbv_view_groupcontent_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['row_options']['view_mode'] = 'vmode_group_content';
   /* No results behavior: Global: Text area */
   $handler->display->display_options['empty']['area']['id'] = 'area';
   $handler->display->display_options['empty']['area']['table'] = 'views';
@@ -96,8 +98,8 @@ function rbv_view_groupcontent_views_default_views() {
     'node' => 'node',
   );
 
-  /* Display: Progetti */
-  $handler = $view->new_display('panel_pane', 'Progetti', 'panel_pane_1');
+  /* Display: Pane: Progetti */
+  $handler = $view->new_display('panel_pane', 'Pane: Progetti', 'panel_pane_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Progetti';
   $handler->display->display_options['defaults']['fields'] = FALSE;
@@ -165,8 +167,8 @@ function rbv_view_groupcontent_views_default_views() {
     ),
   );
 
-  /* Display: Relazioni */
-  $handler = $view->new_display('panel_pane', 'Relazioni', 'panel_pane_2');
+  /* Display: Pane: Relazioni */
+  $handler = $view->new_display('panel_pane', 'Pane: Relazioni', 'panel_pane_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Relazioni';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
@@ -190,6 +192,43 @@ function rbv_view_groupcontent_views_default_views() {
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
     'relation' => 'relation',
+  );
+  $handler->display->display_options['argument_input'] = array(
+    'gid' => array(
+      'type' => 'context',
+      'context' => 'entity:node.nid',
+      'context_optional' => 0,
+      'panel' => '0',
+      'fixed' => '',
+      'label' => 'OG membership: Group ID',
+    ),
+  );
+
+  /* Display: Pane: Collaborazioni */
+  $handler = $view->new_display('panel_pane', 'Pane: Collaborazioni', 'panel_pane_3');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Collaborazioni';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  /* Filter criterion: OG membership: Group_type */
+  $handler->display->display_options['filters']['group_type']['id'] = 'group_type';
+  $handler->display->display_options['filters']['group_type']['table'] = 'og_membership';
+  $handler->display->display_options['filters']['group_type']['field'] = 'group_type';
+  $handler->display->display_options['filters']['group_type']['relationship'] = 'og_membership_rel';
+  $handler->display->display_options['filters']['group_type']['value'] = array(
+    'node' => 'node',
+  );
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'collaboration' => 'collaboration',
   );
   $handler->display->display_options['argument_input'] = array(
     'gid' => array(
