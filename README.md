@@ -7,7 +7,7 @@ Description
 -----------
 This is a [drupal feature][2], which will create the [view][3] named *rbv_group_content*, a modified clone of the standard *OG content view* by [organic groups][4].
 The master display shows all the content of a group, in teasers.
-Two more *content pane* displays shows group project, and group relations. They are used in Organization panel page variant (named *Rbv org group panel*) to show group contents.
+Two more *content pane* displays show group project, and group relations. They are used in Organization panel page variant (named *Rbv org group panel*) to show group contents.
 
 Submodule of
 ------------
